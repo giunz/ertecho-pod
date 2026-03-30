@@ -1,0 +1,32 @@
+{
+  "name": "ertecho-pod",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "scrape": "tsx scripts/scraper.ts",
+    "scrape:schedule": "tsx scripts/scraper.ts --schedule"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.6.0",
+    "node-cron": "^3.0.3",
+    "tsx": "^4.19.2",
+    "@types/node": "^22.10.0",
+    "@types/node-cron": "^3.0.11",
+    "@types/better-sqlite3": "^7.6.12"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^5.2.10",
+    "@sveltejs/kit": "^2.15.2",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "svelte": "^5.17.3",
+    "svelte-check": "^4.1.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7"
+  },
+  "type": "module"
+}

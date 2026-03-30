@@ -1,0 +1,18 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+set -e
+
+AUDIO_PATH=$(bashio::config 'audio_path' '/share/ertecho-pod')
+BASE_URL=$(bashio::config 'base_url' '')
+
+export AUDIO_DIR="${AUDIO_PATH}"
+export DATABASE_PATH="/data/ertecho.db"
+export PORT="3400"
+export NODE_ENV="production"
+
+if bashio::config.has_value 'base_url'; then
+  export PUBLIC_BASE_URL="${BASE_URL}"
+fi
+
+bashio::log.info "Starting web server on port 3000..."
+exec node /app/build/index.js

@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+build/
+.svelte-kit/
+dist/
+
+# Local env
+.env
+!.env.example
+
+# Audio files (large; stored in Docker volume)
+audio/
+*.mp3
+
+# Logs
+*.log
+npm-debug.log*

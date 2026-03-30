@@ -1,0 +1,25 @@
+# Local development / testing only.
+# Production deployment is via Home Assistant add-on (see config.yaml).
+services:
+  app:
+    build:
+      context: .
+      args:
+        BUILD_FROM: node:22-alpine
+    ports:
+      - "${PORT:-3400}:3400"
+    environment:
+      DATABASE_PATH: /data/ertecho.db
+      AUDIO_DIR: /app/audio
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:3400}
+      NODE_ENV: production
+    volumes:
+      - ${AUDIO_PATH:-./audio}:/app/audio
+      - data:/data
+    # Override HA entrypoint — run web server + scraper via a shell wrapper
+    entrypoint: >
+      sh -c "node build/index.js &
+             node --import tsx scripts/scraper.ts --schedule"
+
+  volumes:
+    data:

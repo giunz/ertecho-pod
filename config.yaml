@@ -1,0 +1,39 @@
+name: "10 Λεπτά Ακόμα Podcast"
+description: "Self-hosted podcast archive for the Greek radio show 10 Λεπτά Ακόμα from ERTecho. Scrapes and stores episodes, serves a web UI and RSS feed."
+version: "1.0.0"
+slug: "ertecho_pod"
+init: false
+homeassistant: "2024.1.0"
+
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+
+options:
+  base_url: ""
+
+schema:
+  base_url: str
+
+map:
+  - share:rw   # /share — audio files visible in HA file browser / Samba
+  - data:rw    # /data  — SQLite database (add-on private storage)
+
+# Web UI is served through HA ingress (no extra port needed).
+# Set base_url if you want podcast clients to reach the RSS feed directly
+# by re-enabling the port in the add-on Network settings (default: 3400).
+ingress: true
+ingress_port: 3400
+ingress_stream: true
+panel_icon: mdi:podcast
+panel_title: "10 Λεπτά Ακόμα"
+
+# Optional: uncomment the lines below (or enable in the add-on Network tab)
+# to expose port 3400 for podcast client RSS access from local network / VPN.
+# ports:
+#   3400/tcp: 3400
+# ports_description:
+#   3400/tcp: "Podcast RSS feed and audio (for podcast clients)"

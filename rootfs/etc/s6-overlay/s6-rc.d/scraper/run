@@ -1,0 +1,14 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+set -e
+
+AUDIO_PATH=$(bashio::config 'audio_path' '/share/ertecho-pod')
+
+mkdir -p "${AUDIO_PATH}"
+
+export AUDIO_DIR="${AUDIO_PATH}"
+export DATABASE_PATH="/data/ertecho.db"
+export NODE_ENV="production"
+
+bashio::log.info "Starting episode scraper (weekdays 21:00 Athens)..."
+exec node --import tsx /app/scripts/scraper.ts --schedule
