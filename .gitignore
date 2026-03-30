@@ -4,6 +4,10 @@ build/
 .svelte-kit/
 dist/
 
+# Claude Code
+.claude/
+CLAUDE.md
+
 # Local env
 .env
 !.env.example
