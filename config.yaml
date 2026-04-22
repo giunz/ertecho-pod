@@ -8,15 +8,16 @@ homeassistant: "2024.1.0"
 arch:
   - aarch64
   - amd64
-  - armhf
   - armv7
-  - i386
 
 options:
   base_url: ""
 
 schema:
-  base_url: str
+  base_url:
+    type: str
+    description: "Base URL for RSS enclosure links (leave empty for ingress-only access)"
+    default: ""
 
 map:
   - share:rw   # /share — audio files visible in HA file browser / Samba
